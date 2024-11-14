@@ -3,11 +3,12 @@ resource "random_string" "unique_suffix" {
   special = false
 }
 
-resource "aws_s3_bucket" "my_bucket" {
-  bucket = "my-terraform-buckett-${random_string.unique_suffix.result}"
+resource "random_id" "uuid" {
+  byte_length = 8
 }
 
-resource "aws_s3_bucket_acl" "my_bucket_acl" {
-  bucket = aws_s3_bucket.my_bucket.bucket
+resource "aws_s3_bucket" "my_bucket" {
+  bucket = "cba-jenkins-bucket-eu-west-2"
   acl    = "private"
 }
+
